@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="逗比南波万" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="单/多源最短路的三种算法 — dijkstra &amp;amp; spfa &amp;amp; floyd什么是最短路单源最短路：计算图中一个点到其他各点的最短距离多源最短路：计算图中多个点到其他各点的最短距离 单源最短路 — dijkstra 算法算法描述main 函数：用vector数组存边，初始化一维数组 dist 来表示起点到其他各点的距离（到自己为 0，其他点为 INF），将初始边（目标点为起点，权值">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单&#x2F;多源最短路">
+<meta property="og:url" content="http://yoursite.com/2019/09/24/最短路算法/index.html">
+<meta property="og:site_name" content="逗比南波万">
+<meta property="og:description" content="单/多源最短路的三种算法 — dijkstra &amp;amp; spfa &amp;amp; floyd什么是最短路单源最短路：计算图中一个点到其他各点的最短距离多源最短路：计算图中多个点到其他各点的最短距离 单源最短路 — dijkstra 算法算法描述main 函数：用vector数组存边，初始化一维数组 dist 来表示起点到其他各点的距离（到自己为 0，其他点为 INF），将初始边（目标点为起点，权值">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-25T16:20:20.509Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="单&#x2F;多源最短路">
+<meta name="twitter:description" content="单/多源最短路的三种算法 — dijkstra &amp;amp; spfa &amp;amp; floyd什么是最短路单源最短路：计算图中一个点到其他各点的最短距离多源最短路：计算图中多个点到其他各点的最短距离 单源最短路 — dijkstra 算法算法描述main 函数：用vector数组存边，初始化一维数组 dist 来表示起点到其他各点的距离（到自己为 0，其他点为 INF），将初始边（目标点为起点，权值">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/24/最短路算法/">
+
+
+
+
+
+  <title>单/多源最短路 | 逗比南波万</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逗比南波万</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">welcome</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home  //首页"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/最短路算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王振">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗比南波万">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">单/多源最短路</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-24T14:25:09+08:00">
+                2019-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="单-多源最短路的三种算法-—-dijkstra-amp-spfa-amp-floyd"><a href="#单-多源最短路的三种算法-—-dijkstra-amp-spfa-amp-floyd" class="headerlink" title="单/多源最短路的三种算法 — dijkstra &amp; spfa &amp; floyd"></a>单/多源最短路的三种算法 — dijkstra &amp; spfa &amp; floyd</h2><h3 id="什么是最短路"><a href="#什么是最短路" class="headerlink" title="什么是最短路"></a>什么是最短路</h3><p>单源最短路：计算图中一个点到其他各点的最短距离<br>多源最短路：计算图中多个点到其他各点的最短距离</p>
+<h3 id="单源最短路-—-dijkstra-算法"><a href="#单源最短路-—-dijkstra-算法" class="headerlink" title="单源最短路 — dijkstra 算法"></a>单源最短路 — dijkstra 算法</h3><h4 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h4><p>main 函数：用vector数组存边，初始化一维数组 dist 来表示起点到其他各点的距离（到自己为 0，其他点为 INF），将初始边（目标点为起点，权值为 0）加入到优先队列 queue 中<br>dijkstra 函数：抛出优先队列的 top 边，若这个边的权值比现在到这个目标点的权值大（说明起点到该点的长度又更新了，而且那个边肯定在这个边前面），就跳过，否则就疏松以这个点为起点的所有边，若通过这个点，起始点到其他的点的距离有减小的，则把路径减小的目标点和减小后的距离加入到优先队列中，重复操作<br><a id="more"></a></p>
+<h4 id="算法应用"><a href="#算法应用" class="headerlink" title="算法应用"></a>算法应用</h4><p>说明：这个题有点意思（</p>
+<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>知识点：最短路，最短路的优化</p>
+<p>贝克兰德有n个城镇，这些城镇之间有m条道路连接，每条道路有一个长度l。</p>
+<p>zf在其中k个城镇设置了治安点。当一个城镇发生事件时，任意一个治安点都可以派人前往。但是为了节省资源，往往会选择距离最近的治安点。</p>
+<p>那么请问，对于每一个城镇，最近的治安点距离为多少。</p>
+<h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>这个题要求算部分点到其他点的最短距离，因此看起来是一个多源最短路，但是你如果执行多次 dijkstra 你就超时了，所以我们要多设立一个虚拟点 s，把所有的治安点往这个虚拟点上拉一条距离为 0的边（无向），以这个点为起点计算到其他点的最短路即满足要求</p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> Author: 王振</span></span><br><span class="line"><span class="comment"> Result: AC	Submission_id: 1833390</span></span><br><span class="line"><span class="comment"> Created at: Fri Sep 13 2019 21:01:55 GMT+0800 (CST)</span></span><br><span class="line"><span class="comment"> Problem_id: 2378	Time: 540	Memory: 5508</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n,m,s;</span><br><span class="line">int dist[<span class="number">1005</span>];</span><br><span class="line">struct line&#123;</span><br><span class="line">    int w;</span><br><span class="line">    int v;</span><br><span class="line">    bool operator &lt;(<span class="keyword">const</span> line&amp;b) <span class="keyword">const</span></span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">return</span> w&gt;b.w;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;list;</span><br><span class="line"></span><br><span class="line">vector &lt;line&gt; vec[<span class="number">1005</span>];</span><br><span class="line">priority_queue &lt;line&gt; q;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> dijkstra(int p)</span><br><span class="line">&#123;</span><br><span class="line">	list.v=p;</span><br><span class="line">	list.w=<span class="number">0</span>;</span><br><span class="line">	q.push(list);</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		struct line k=q.top();</span><br><span class="line">		q.pop();</span><br><span class="line">		<span class="keyword">if</span>(k.w&gt;dist[k.v])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(int i=<span class="number">0</span>;i&lt;vec[k.v].size();i++)</span><br><span class="line">			&#123;</span><br><span class="line">				struct line j=vec[k.v][i];</span><br><span class="line">				<span class="keyword">if</span>(dist[j.v]&gt;dist[k.v]+j.w)</span><br><span class="line">				&#123;</span><br><span class="line">					dist[j.v]=dist[k.v]+j.w;</span><br><span class="line">					list.v=j.v;</span><br><span class="line">					list.w=dist[j.v];</span><br><span class="line">					q.push(list);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int t;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		int u,v,w;</span><br><span class="line">		scanf(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;s);</span><br><span class="line">		<span class="keyword">for</span>(int i=<span class="number">1</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">while</span>(!vec[i].empty())</span><br><span class="line">			&#123;</span><br><span class="line">				vec[i].pop_back();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(int i=<span class="number">1</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			dist[i]=<span class="number">10000000</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(int i=<span class="number">1</span>;i&lt;=s;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			scanf(<span class="string">"%d"</span>,&amp;u);</span><br><span class="line">			list.w=<span class="number">0</span>;</span><br><span class="line">			list.v=u;</span><br><span class="line">			vec[n+<span class="number">1</span>].push_back(list);</span><br><span class="line">			list.v=n+<span class="number">1</span>;</span><br><span class="line">			vec[u].push_back(list);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(int i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			scanf(<span class="string">"%d%d%d"</span>,&amp;u,&amp;v,&amp;w);</span><br><span class="line">			list.v=v;</span><br><span class="line">			list.w=w;</span><br><span class="line">			vec[u].push_back(list);</span><br><span class="line">			list.v=u;</span><br><span class="line">			vec[v].push_back(list);</span><br><span class="line">		&#125;</span><br><span class="line">		dist[n+<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">		dijkstra(n+<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span>(int i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(<span class="string">"%d "</span>,dist[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="单源最短路-—-spfa-算法-可以判断负环！"><a href="#单源最短路-—-spfa-算法-可以判断负环！" class="headerlink" title="单源最短路 — spfa 算法  可以判断负环！"></a>单源最短路 — spfa 算法  可以判断负环！</h3><h4 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h4><p>将某个点的序号 x 作为 spfa 函数的输入，则从这个点开始进行单源最短路，如果点 v 通过当前点 u 到输入点 x 的距离变小，那么更新距离值，并且如果 v 不在队列中，就将 v 加入到队列里，对于每个点记录它们加入队列的次数，如果大于总点数 n ,就判定为当前图中存在负环。</p>
+<h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>知识点：最短路</p>
+<p>克莱恩在一场冒险中得到了得到了一个破损的魔法阵，这个魔法阵是一个有n个点m条边的有向有环图，任意两点之间最多只有一条边，每条边有一个能量值a（可能是负数，别问问就是magical），不存在负环。</p>
+<p>克莱恩试图去修补这个魔法阵。已知，这个魔法阵缺少了3条边，且已经知道这3条边的起点和终点（有向）。对于每条边，克莱恩要赋予其一个能量值c，为了避免邪神出现，修补过程以及结束后也不能出现负环。</p>
+<p>请问每次的最小花费是多少(保证有解，可以是负数)。</p>
+<h4 id="题目思路"><a href="#题目思路" class="headerlink" title="题目思路"></a>题目思路</h4><p>修补过程及结束后不能出现负环，则枚举边权来找到最大的可以使图中出现负环的权值，那么给这个权值加一图中就没有负环（其实可以二分权值直接找到答案）</p>
+<h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> Author: 王振</span></span><br><span class="line"><span class="comment"> Result: AC	Submission_id: 1833275</span></span><br><span class="line"><span class="comment"> Created at: Fri Sep 13 2019 16:22:27 GMT+0800 (CST)</span></span><br><span class="line"><span class="comment"> Problem_id: 2376	Time: 790	Memory: 3228</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">struct edge&#123;</span><br><span class="line">	int v,w;</span><br><span class="line">&#125;e;</span><br><span class="line"></span><br><span class="line">vector &lt;edge&gt; v[<span class="number">305</span>];</span><br><span class="line">queue &lt;int&gt; q;</span><br><span class="line">int n,m;</span><br><span class="line">int flag=<span class="number">0</span>;                <span class="comment">// 有无负环的标志，有负环 flag=1 </span></span><br><span class="line">int num[<span class="number">305</span>];              <span class="comment">// 存储每个点加入队列的次数 </span></span><br><span class="line">int visit[<span class="number">305</span>];			   <span class="comment">// 如果某个点在队列中，那么visit[i]=1，反之为0 </span></span><br><span class="line">int dist[<span class="number">305</span>];			   <span class="comment">// 存储距离 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> spfa(int x)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>;i&lt;n;i++)          <span class="comment">// 初始化 </span></span><br><span class="line">	&#123;</span><br><span class="line">		num[i]=<span class="number">0</span>;</span><br><span class="line">		visit[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(i!=x) dist[i]=<span class="number">10000000</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		int a=q.front();</span><br><span class="line">		visit[a]=<span class="number">0</span>;</span><br><span class="line">		q.pop();</span><br><span class="line">		<span class="keyword">for</span>(int i=<span class="number">0</span>;i&lt;v[a].size();i++)</span><br><span class="line">		&#123;</span><br><span class="line">			int c=v[a][i].v;</span><br><span class="line">			<span class="keyword">if</span>(dist[c]&gt;dist[a]+v[a][i].w)    <span class="comment">// 距离小于当前距离，更新，如果这个点不在队列中则加入队列，且这个点的访问次数+1 </span></span><br><span class="line">			&#123;</span><br><span class="line">				dist[c]=dist[a]+v[a][i].w;</span><br><span class="line">				<span class="keyword">if</span>(visit[c]==<span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					num[c]++; </span><br><span class="line">					q.push(c);</span><br><span class="line">					visit[c]=<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(int i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(num[i]&gt;n)            <span class="comment">// 如果对一个点访问次数 &gt;n 则判定为存在负环 </span></span><br><span class="line">			&#123;</span><br><span class="line">				flag=<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	int x,y,z;</span><br><span class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>;i&lt;m;i++)         <span class="comment">// 输入边 </span></span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">		e.v=y;</span><br><span class="line">		e.w=z;</span><br><span class="line">		v[x].push_back(e);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		flag=<span class="number">0</span>;</span><br><span class="line">		cin&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		e.v=y;</span><br><span class="line">		e.w=<span class="number">1000</span>;</span><br><span class="line">		v[x].push_back(e);</span><br><span class="line">		<span class="keyword">while</span>(flag==<span class="number">0</span>)        <span class="comment">// 若没有负环则边权减小直到有负环为止</span></span><br><span class="line">		&#123;</span><br><span class="line">			q.push(x);</span><br><span class="line">			e.w--;</span><br><span class="line">			v[x].pop_back();</span><br><span class="line">			v[x].push_back(e);</span><br><span class="line">			spfa(x);</span><br><span class="line">		&#125;</span><br><span class="line">		v[x].pop_back();      <span class="comment">//此时的边权为最大的有负环的权值，加一则没有负环</span></span><br><span class="line">		e.w++;</span><br><span class="line">		v[x].push_back(e);</span><br><span class="line">		cout&lt;&lt;e.w&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多源最短路-—-floyd-算法"><a href="#多源最短路-—-floyd-算法" class="headerlink" title="多源最短路 — floyd 算法"></a>多源最短路 — floyd 算法</h3><h4 id="算法描述-2"><a href="#算法描述-2" class="headerlink" title="算法描述"></a>算法描述</h4><p>floyd 算法很简单，先在邻接矩阵中将直接相连的边的权值更新，然后对于任意两个点，以任意一个点为中介，更新两个点之间的权值，注意将当成中介的点放在最外面的循环，如若不然，可以将这三个循环执行三遍，则不用管i,j,k的顺序</p>
+<h4 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">for</span>(int k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(int i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(int j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(dist[i][j]&gt;dist[i][k]+dist[k][j])</span><br><span class="line">			&#123;</span><br><span class="line">				dist[i][j]=dist[i][k]+dist[k][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/24/最小生成树/" rel="next" title="最小生成树">
+                <i class="fa fa-chevron-left"></i> 最小生成树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/29/STL容器的总结/" rel="prev" title="STL容器的总结">
+                STL容器的总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="王振">
+            
+              <p class="site-author-name" itemprop="name">王振</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+  -        
+<div id="days">
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("09/20/2019 22:28:51");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+</div>
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单-多源最短路的三种算法-—-dijkstra-amp-spfa-amp-floyd"><span class="nav-number">1.</span> <span class="nav-text">单/多源最短路的三种算法 — dijkstra &amp; spfa &amp; floyd</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是最短路"><span class="nav-number">1.1.</span> <span class="nav-text">什么是最短路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单源最短路-—-dijkstra-算法"><span class="nav-number">1.2.</span> <span class="nav-text">单源最短路 — dijkstra 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法描述"><span class="nav-number">1.2.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法应用"><span class="nav-number">1.2.2.</span> <span class="nav-text">算法应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#思路"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单源最短路-—-spfa-算法-可以判断负环！"><span class="nav-number">1.3.</span> <span class="nav-text">单源最短路 — spfa 算法  可以判断负环！</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法描述-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题目思路"><span class="nav-number">1.3.3.</span> <span class="nav-text">题目思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码示例"><span class="nav-number">1.3.4.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多源最短路-—-floyd-算法"><span class="nav-number">1.4.</span> <span class="nav-text">多源最短路 — floyd 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法描述-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码示例-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王振</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
