@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="逗比南波万" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="智能计算机实验我对于此课程实验的看法关于此实验的指导比较少，主要来源就是寒武纪论坛和一些大体的指导，没有详细的介绍，而这门实验的测试是在服务器上进行的，坑比较多，因此可能会耗费比较多的时间（除非你直接补充那七个文件而且不用在服务器上测试，平台提交直接AC） 这篇文章的主要目的是提供一个比较详细的实验完成方法，并且减少大家在完成实验过程中踩的坑，但是不会提供具体的代码 注意：如果你想快速顺利的完成此">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能计算机实验">
+<meta property="og:url" content="http://yoursite.com/2020/12/21/智能计算机/index.html">
+<meta property="og:site_name" content="逗比南波万">
+<meta property="og:description" content="智能计算机实验我对于此课程实验的看法关于此实验的指导比较少，主要来源就是寒武纪论坛和一些大体的指导，没有详细的介绍，而这门实验的测试是在服务器上进行的，坑比较多，因此可能会耗费比较多的时间（除非你直接补充那七个文件而且不用在服务器上测试，平台提交直接AC） 这篇文章的主要目的是提供一个比较详细的实验完成方法，并且减少大家在完成实验过程中踩的坑，但是不会提供具体的代码 注意：如果你想快速顺利的完成此">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201221161604172.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201221170316556.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201221171419046.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201221171900968.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201222121105346.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201222121110969.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201222121125219.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201222121129289.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201221173107160.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201221173352870.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201221173555856.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20200118.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201221173834863.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201222014249959.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201222004846500.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201222004912384.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201222004933612.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201222004952263.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201222005007770.png">
+<meta property="og:updated_time" content="2021-05-16T13:08:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="智能计算机实验">
+<meta name="twitter:description" content="智能计算机实验我对于此课程实验的看法关于此实验的指导比较少，主要来源就是寒武纪论坛和一些大体的指导，没有详细的介绍，而这门实验的测试是在服务器上进行的，坑比较多，因此可能会耗费比较多的时间（除非你直接补充那七个文件而且不用在服务器上测试，平台提交直接AC） 这篇文章的主要目的是提供一个比较详细的实验完成方法，并且减少大家在完成实验过程中踩的坑，但是不会提供具体的代码 注意：如果你想快速顺利的完成此">
+<meta name="twitter:image" content="http://yoursite.com/2020/12/21/智能计算机/image-20201221161604172.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/12/21/智能计算机/">
+
+
+
+
+
+  <title>智能计算机实验 | 逗比南波万</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逗比南波万</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">welcome to my blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home  //首页"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/21/智能计算机/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王振">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗比南波万">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">智能计算机实验</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-21T16:01:31+08:00">
+                2020-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="智能计算机实验"><a href="#智能计算机实验" class="headerlink" title="智能计算机实验"></a>智能计算机实验</h1><h2 id="我对于此课程实验的看法"><a href="#我对于此课程实验的看法" class="headerlink" title="我对于此课程实验的看法"></a>我对于此课程实验的看法</h2><p>关于此实验的指导比较少，主要来源就是寒武纪论坛和一些大体的指导，没有详细的介绍，而这门实验的测试是在服务器上进行的，坑比较多，因此可能会耗费比较多的时间（除非你直接补充那七个文件而且不用在服务器上测试，平台提交直接AC）</p>
+<p>这篇文章的主要目的是提供一个比较详细的实验完成方法，并且减少大家在完成实验过程中踩的坑，但是不会提供具体的代码</p>
+<p><strong>注意</strong>：如果你想快速顺利的完成此实验，可以观看这篇文章</p>
+<p>​         如果你想锻炼自己根据报错找 bug 的能力或者根据报错自学 tensorflow 的能力，可以先选择自己完成实验，如果实在是感到      困难，可以再来观看这篇文章</p>
+<a id="more"></a>
+<h2 id="实验一"><a href="#实验一" class="headerlink" title="实验一"></a>实验一</h2><p>(听说不用快速幂和多核拆分就能过，哭了)</p>
+<ol>
+<li>进入 /opt   将压缩包解压</li>
+<li>进入 /opt/AICSE-demo-student/env  执行 source env.sh</li>
+<li>cd tensorflow-v1.10   执行 source env.sh   然后激活虚拟环境</li>
+</ol>
+<p><img src="/2020/12/21/智能计算机/image-20201221161604172.png" alt="image-20201221161604172"></p>
+<ol>
+<li>以上两步非常重要，在每一次进入服务器之后都要执行，否则会在执行脚本或编译的时候出现奇怪的错误</li>
+<li><p>进入 /opt/AICSE-demo-student/demo/style_transfer_bcl/src/bangc/PluginPowerDifferenceOp ，开始进行代码的补充，我建议的顺序如下：</p>
+<ul>
+<li>plugin_power_difference_kernel.mlu </li>
+<li>plugin_power_difference_kernel.h</li>
+<li>powerDiff.cpp</li>
+<li>plugin_power_difference_op.cc</li>
+<li>cnplugin.h</li>
+</ul>
+</li>
+<li><p>在 .mlu 中进行 PowerDifference 算子的实现，这个部分比较简单，需要注意的地方为 GDRAM 和 NRAM 之间的转换，我的理解就是参数中的变量都是 GDRAM，你在函数中创建的 <code>__nram__ half</code> 变量都是 NRAM，而你的实现大概能分为三个阶段：</p>
+<ul>
+<li>初级阶段，实现了基本的算子功能，能得到60分</li>
+<li>中级阶段，用快速幂进行实现，能够小幅降低在 CNRT 上的延时，能得到70分（不过不用快速幂可能也行</li>
+<li>高级阶段，实现多核拆分计算，能够同时在多个核上进行运算，能得到100分（bushi</li>
+</ul>
+<p>此部分需要用到一些 bangc 的内置函数，使用其中的三个函数就能实现此算子：</p>
+<ul>
+<li><p>__memcpy (目标地址，源地址，长度，RAM类型转换)     功能为将源地址之后一定长度的数据拷贝到目标地址</p>
+<p>一个栗子：<code>__memcpy(input1_nram+i*Seg, input1+i*Seg, Seg*sizeof(half), GDRAM2NRAM);</code></p>
+</li>
+<li><p>__bang_sub (目标地址，被减数，减数，长度)     功能为进行一定长度的向量减法，结果储存在目标地址</p>
+<p>一个栗子：<code>__bang_sub(input1_nram+i*Seg, input1_nram+i*Seg, input2_nram+i*Seg, Seg);</code></p>
+</li>
+<li><p>__bang_mul     与上面类似，只不过进行的是乘法</p>
+</li>
+</ul>
+<p>关于函数的具体使用以及更多的函数介绍，可以参考 bangc 的开发指导书</p>
+<p>噢，忘说了，函数的参数大致是这样：<code>__mlu_entry__ void PowerDifferenceKernel(half* input1, half* input2, int pow, half* output, int len)</code></p>
+</li>
+<li><p>补全 plugin_power_difference_kernel.h，非常简单，只要和 .mlu 中的函数参数一致即可</p>
+</li>
+<li><p>补全 powerDiff.cpp，这部分若要自己写可能比较困难，我的建议是参照本来就有的其他算子的实现来完成，需要注意的是将其中的 *Kernel 改成自己的 PowerDifferenceKernel，当然还可能有其他的都需要改成 PowerDifference 对应的格式，在参照其他算子完成补全后，需要注意的是，如果你想使用多核拆分的话，还要修改两个地方：</p>
+<ul>
+<li>将 dim.x = 1 改为 dim.x = 8</li>
+<li>将 cnrtFunctionType_t c 改为 CNRT_FUNC_TYPE_UNION2</li>
+</ul>
+</li>
+<li><p>补全 plugin_power_difference_op.cc，这个比较难搞，即使参照其他算子，也比较烦人，我对于此部分的建议是选择的参照算子的实现可以选择简单的，并且不要思考的太过于复杂（</p>
+</li>
+<li><p>补全 cnplugin.h，参照上面的实现，定义 PowerDifference 对应的结构，结构指针以及 plugin_power_difference_op.cc 中函数的声明</p>
+</li>
+<li><p>在补全了以上文件之后，就可以进行算子的测试啦，在 xxx/src/bangc/PluginPowerDifferenceOp 中执行以下两句：</p>
+<ul>
+<li>bash make.sh</li>
+<li>./power_diff_test</li>
+</ul>
+<p>就可以看到测试结果，正确的测试结果大致如下：</p>
+<p><img src="/2020/12/21/智能计算机/image-20201221170316556.png" alt="image-20201221170316556"></p>
+</li>
+<li><p>如果你的运行结果和上图差不多，说明你前面的实现已经差不多完成啦，接下来就要进行 cnplugin 的集成，步骤如下：</p>
+<ul>
+<li><p>将 cnplugin.h 复制到下面两个目录中：</p>
+<p>/opt/AICSE-demo-student/env/neuware/include/</p>
+<p>/opt/AICSE-demo-student/env/Cambricon-CNPlugin-MLU270/common/include/</p>
+</li>
+<li><p>在 /opt/AICSE-demo-student/env/Cambricon-CNPlugin-MLU270 处执行 bash build_cnplugin.sh —mlu200，如果编译的最后显示 build success，说明你编译成功，会在 ./build 文件夹中生成新的 libcnplugin.so</p>
+</li>
+<li><p>将新生成的 libcnplugin.so 复制到 /opt/AICSE-demo-student/env/neuware/lib64/ 文件夹下</p>
+</li>
+</ul>
+</li>
+<li><p>很快啊，cnplugin 的集成就完成了，接下来要进行的就是 TensorFlow 算子集成，此部分首先需要按照 /opt/AICSE-demo-student/demo/style_transfer_bcl/src/tf-implementation/tf-add-power-diff/readme.txt  即下图：</p>
+<p><img src="/2020/12/21/智能计算机/image-20201221171419046.png" alt="image-20201221171419046"></p>
+<p>将此文件夹下的其他文件复制到 readme.txt 里对应的文件夹中，在进行这一步时请务必仔细，否则在稍后编译时可能会产生各种各样奇怪的 bug，在复制完成后，如果你直接在 /opt/AICSE-demo-student/env/tensorflow-v1.10 中执行 bash build_tensorflow-v1.10_mlu.sh，有 99.9% 的可能会出现以下的错误：</p>
+<p><img src="/2020/12/21/智能计算机/image-20201221171900968.png" alt="image-20201221171900968"></p>
+<p>根据错误信息可以看出来，实验提供的 mlu_lib_ops.cc 和你补充的 plugin_power_difference_op.cc  中 ，cnmlCreatePluginPowerDifferenceOp 以及 cnmlComputePluginPowerDifferenceOpForward 的参数不同，你需要选择修改其中之一来保证两个文件中的参数一致，我的建议是修改实验提供的 mlu_lib_ops.cc，因为修改起来比较简单，并且在其中你可以使用 nullptr 来填充参数，，下面是我的实现以供参考：</p>
+<p>mlu_lib_ops.cc 中对于 plugin_power_difference_op的调用：<br><img src="/2020/12/21/智能计算机/image-20201222121105346.png" alt="image-20201222121105346"><br>plugin_power_difference_op.cc 中 plugin_power_difference_op 的参数：<br><img src="/2020/12/21/智能计算机/image-20201222121110969.png" alt="image-20201222121110969"><br>mlu_lib_ops.cc 中对于 cnmlComputePluginPowerDifferenceOpForward的调用：<br><img src="/2020/12/21/智能计算机/image-20201222121125219.png" alt="image-20201222121125219"><br>plugin_power_difference_op.cc 中 cnmlComputePluginPowerDifferenceOpForward 的参数：<br><img src="/2020/12/21/智能计算机/image-20201222121129289.png" alt="image-20201222121129289"></p>
+<p>若在完成这一步之后，你的编译出现socket错误，就要将 .sh 文件中的 job_num 改为 16 ，你应该就可以成功的进行 tensorflow的编译啦（可能需要较长的时间</p>
+</li>
+<li><p>最后就是补全 …/src/online_mlu/power_difference_test_bcl.py 和 …/src/online_cpu/power_difference_test_cpu.py 文件 ， 执行 python power_difference_test_xxx.py 进行测试，这两个文件的补全比较简单，并且是基本一样的，只是在 test_bcl 中有一个特殊的地方要修改，因此我的建议是先进行 cpu 的测试，成功的测试结果如下图：</p>
+<p><img src="/2020/12/21/智能计算机/image-20201221173107160.png" alt="image-20201221173107160"></p>
+<p>而当你将补全的地方复制到 test_mlu.py 中，进行测试，你会得到以下结果：</p>
+<p><img src="/2020/12/21/智能计算机/image-20201221173352870.png" alt="image-20201221173352870"></p>
+<p>我在开始的时候将代码中的   os.environ[‘MLU_VISIBLE_DEVICES’] = “0”   改为 os.environ[‘MLU_VISIBLE_DEVICES’] = “1” ，然后再次测试：</p>
+<p><img src="/2020/12/21/智能计算机/image-20201221173555856.png" alt="image-20201221173555856"></p>
+<p>虽然错误率看上去比较高，但是交上去的话可以过。不过这种改的方法应该是不正确的, 而且在实验二中这个问题会同样出现但是无法解决， 出现这种情况的原因应该是在多核拆分的循环的最后一次中数据的长度不足 Seg，因此我们需要将最后的一次单独提取出来做计算，之后的结果是这样的：</p>
+<p><img src="/2020/12/21/智能计算机/image-20200118.png" alt="image-20200118"></p>
+<p>可以看到错误率比之前低了很多</p>
+</li>
+<li><p>最后，如果你使用了快速幂，多核拆分，但是在 MLU 上仍然有着 100+ ms 的延迟，那么你需要在 test_bcl.py 中进行如下修改：</p>
+<p><img src="/2020/12/21/智能计算机/image-20201221173834863.png" alt="image-20201221173834863"></p>
+<p>因为 MLU 的启动时间比较慢，所以可以多次运行来获得更低的延迟，如果这样你还不能拿到满分，请多提交几次</p>
+</li>
+<li><p>补充：如果你提交到平台上的结果为 JSON 格式错误，说明你代码写错了，请确保你在如上测试中都成功的运行出了正确的结果，如果你在实验的完成过程中出现了其他错误，请看一下自己是不是漏了某个步骤，或者某个步骤做的不够仔细，如果还是不行的话，请前往和助教对线或者在群里请求帮助，此外，请务必不要重启你的服务器，<del>否则就会像我一样丢掉所有数据然后重新配一遍</del></p>
+</li>
+</ol>
+<h2 id="实验一选作（四选一）—-softmax-算子实现"><a href="#实验一选作（四选一）—-softmax-算子实现" class="headerlink" title="实验一选作（四选一）— softmax 算子实现"></a>实验一选作（四选一）— softmax 算子实现</h2><h3 id="softmax-算子介绍"><a href="#softmax-算子介绍" class="headerlink" title="softmax 算子介绍"></a>softmax 算子介绍</h3><p><img src="/2020/12/21/智能计算机/image-20201222014249959.png" alt="image-20201222014249959"></p>
+<h3 id="算子实现"><a href="#算子实现" class="headerlink" title="算子实现"></a>算子实现</h3><p>因为输入数据的规模为 20 × 256，共 20 行，256 列，我们首先要找出每一列的最大值，方法为每次接受一行的数据，对于每一列来说，如果新输入的数据大于最大值，就更新，否则不变，然后将每一列的所有数减去这个最大值，求出 e 关于这个数的指数，再全部加起来，然后取一个倒数，然后对于每一列的每一个数，乘以之前计算出来的倒数，这样计算出来的结果即为正确结果</p>
+<h3 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mlu.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> input_size 20     # 列数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> input_num  256    # 行数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEN  256*20</span></span><br><span class="line">__<span class="function">mlu_entry__ <span class="keyword">void</span> <span class="title">SoftmaxKernel</span><span class="params">(half* input, half* output)</span></span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">   __nram__ half input_nram[input_num];</span><br><span class="line">   __nram__ half output_nram[LEN];</span><br><span class="line">   __nram__ half temp1_nram[input_num];</span><br><span class="line">   __nram__ half temp2_nram[input_num];</span><br><span class="line">   __nram__ half comL_nram[input_num];</span><br><span class="line">   __nram__ half sum_nram[input_num];</span><br><span class="line">   __nram__ half sum_recip_nram[input_num];</span><br><span class="line">   __nram__ half mulL_nram[input_num];</span><br><span class="line">   __nram__ half mulR_nram[input_num];</span><br><span class="line">   __nramset_half(comL_nram, input_num, <span class="number">-3000.0</span>);</span><br><span class="line">   __nramset_half(sum_nram, input_num,<span class="number">0.0</span>);</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int32_t</span> i=<span class="number">0</span>; i&lt;input_size;i++)</span><br><span class="line">    &#123;</span><br><span class="line">       __memcpy(input_nram, input+i*input_num, input_num*<span class="keyword">sizeof</span>(half),GDRAM2NRAM);  # 分别获取每行的输入数据</span><br><span class="line">       __bang_gt(temp1_nram,comL_nram,input_nram,input_num);   # 若输入值小于最大值，则对应位置为<span class="number">1</span></span><br><span class="line">       __bang_not(temp2_nram,temp1_nram,input_num);            # 若输入值大于最大值，则对应位置为<span class="number">1</span></span><br><span class="line">       __bang_mul(mulL_nram,temp1_nram,comL_nram,input_num);   # 最大值不变的位置，置最大值</span><br><span class="line">       __bang_mul(mulR_nram,temp2_nram,input_nram,input_num);  # 最大值改变的位置，置输入值</span><br><span class="line">       __bang_add(comL_nram,mulL_nram,mulR_nram,input_num);    # 相加得到每列新的最大值</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int32_t</span> i=<span class="number">0</span>; i&lt;input_size;i++)</span><br><span class="line">     &#123;</span><br><span class="line">       __memcpy(input_nram, input+i*input_num, input_num*<span class="keyword">sizeof</span>(half),GDRAM2NRAM);  # 分别获取每行的输入数据</span><br><span class="line">       __bang_sub(temp1_nram,input_nram,comL_nram,input_num);  # 每一列减去该列最大值</span><br><span class="line">       __bang_active_exp(temp2_nram,temp1_nram,input_num);     # 求 e 关于 j-max 的指数</span><br><span class="line">       __bang_add(sum_nram,sum_nram,temp2_nram,input_num);     # 将所有的指数相加得到分母</span><br><span class="line">     &#125;</span><br><span class="line">    __bang_active_recip(sum_recip_nram,sum_nram,input_num);    # 求出分母的倒数</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int32_t</span> i=<span class="number">0</span>; i&lt;input_size;i++)</span><br><span class="line">       &#123;</span><br><span class="line">         __memcpy(input_nram, input+i*input_num, input_num*<span class="keyword">sizeof</span>(half),GDRAM2NRAM);  # 分别获取每行的输入数据</span><br><span class="line">        __bang_sub(temp1_nram,input_nram,comL_nram,input_num);         # 每一列减去该列最大值</span><br><span class="line">        __bang_active_exp(temp2_nram,temp1_nram,input_num);            # 求 e 关于 i-max 的指数，即分子</span><br><span class="line">        __bang_mul(temp2_nram,temp2_nram,sum_recip_nram,input_num);    # 将分子和分母的倒数相乘，得到结果</span><br><span class="line">        __memcpy(output+i*input_num,temp2_nram,input_num*<span class="keyword">sizeof</span>(half),NRAM2GDRAM);  # 将结果返回到输出中</span><br><span class="line">      &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p>该实验对于 softmax 算子进行实现，难点在于如何灵活的运用 bangc 提供的各种函数对于数据进行操作和计算，只要按照 softmax 的定义对式子一步一步的计算，并合理的运用 bangc 提供的函数，就可以比较简单的实现 softmax 算子，在这个过程中，bangc 的教学文档起到了很大的作用，文档对于各种各样的函数做出了详细的解释与注意事项，可以对算子实现起到很大的帮助</p>
+<h2 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h2><h3 id="模型量化"><a href="#模型量化" class="headerlink" title="模型量化"></a>模型量化</h3><p>该部分代码和量化手段已经提前给出，直接按照<a href="http://forum.cambricon.com/uploadfile/user/file/20200714/1594717975554836.pdf" target="_blank" rel="noopener">教程</a>即可完成。</p>
+<h3 id="在线推理"><a href="#在线推理" class="headerlink" title="在线推理"></a>在线推理</h3><p>在线推理部分主要分为两块，分别需要补全</p>
+<p>/opt/AICSE-demo-student/demo/style_transfer_bcl/src/online_mlu/transform_mlu.py 和</p>
+<p>/opt/AICSE-demo-student/demo/style_transfer_bcl/src/online_cpu/transform_cpu.py</p>
+<h4 id="online-cpu"><a href="#online-cpu" class="headerlink" title="online_cpu"></a>online_cpu</h4><p>在cpu部分里，使用到的模型是非量化后的模型文件。</p>
+<p>该部分需要补全两个函数run_ori_power_diff_pb和run_numpy_pb</p>
+<ul>
+<li><p><strong>run_ori_power_diff_pb</strong> ：直接按照同文件下的run_ori_pb逻辑进行书写，但是要注意该函数使用的计算图与run_ori_pb不同点在于将原生的差平方计算算子改成了实验一中集成的power_difference算子，所以只需要我们进行feed数据（<strong>不需要</strong>重新实现power_difference的计算），将pow值传递至计算图计算。而其在<strong>计算图中的各节点信息可使用<a href="https://lutzroeder.github.io/netron/" target="_blank" rel="noopener">神经网络模型可视化网站</a>进行查找</strong>。</p>
+<p><img src="/2020/12/21/智能计算机/image-20201222004846500.png" alt="image-20201222004846500"></p>
+<p>从图中可以看出除了 X 还额外需要 feed 一个数据，即 PowerDifference_z，给它赋值为2即可，相当于将pow = 2 传递给了计算图</p>
+<p><img src="/2020/12/21/智能计算机/image-20201222004912384.png" alt="image-20201222004912384"></p>
+</li>
+<li><p><strong>run_numpy_pb</strong>：与上一个类似，只不过这里需要我们手动将原生的差平方计算算子的输入数据提出并使用实验一中的power_diff_numpy.py的内置函数进行计算后，再传回计算图进行计算。<strong>需要注意</strong>该函数的输入参数跟上一个run_ori_power_diff_pb的计算图一样的参数，因为这里要手动算，所以在可视化的计算图上可以发现这里断开了。</p>
+<p><img src="/2020/12/21/智能计算机/image-20201222004933612.png" alt="image-20201222004933612"></p>
+<p>上面这张图是使用原生的差平方计算算子的模型，可以看到SquaredDifference算子的输入分别为Conv2D_13和 moments_15/StopGradient</p>
+<p><img src="/2020/12/21/智能计算机/image-20201222004952263.png" alt="image-20201222004952263"></p>
+<p>可以看到这个模型的 Conv2D_13和 moments_15/StopGradient 并没有参与到算子的计算中，所以我们要把这两个节点的数据提取出来，再加上一个 pow 值为 2，作为 power_diff_numpy 的三个参数计算出 PowerDifference 算子的输出结果，此处需要注意的是从计算图中提取出来的 Tensor 不能直接进行 reshape，否则会报错，所以我们要通过 eval() 将其转换为数组，并且要向 eval() feed 一个数据 X</p>
+<p><img src="/2020/12/21/智能计算机/image-20201222005007770.png" alt="image-20201222005007770"></p>
+</li>
+<li><p>全部代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.python.platform <span class="keyword">import</span> gfile</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> power_diff_numpy <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">os.putenv(<span class="string">'MLU_VISIBLE_DEVICES'</span>,<span class="string">''</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_arg</span><span class="params">()</span>:</span></span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.add_argument(<span class="string">'image'</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'ori_pb'</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'ori_power_diff_pb'</span>)</span><br><span class="line">    parser.add_argument(<span class="string">'numpy_pb'</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    <span class="keyword">return</span> args</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_ori_pb</span><span class="params">()</span>:</span></span><br><span class="line">    args = parse_arg()</span><br><span class="line">    config = tf.ConfigProto(allow_soft_placement=<span class="literal">True</span>,</span><br><span class="line">                inter_op_parallelism_threads=<span class="number">1</span>,</span><br><span class="line">                            intra_op_parallelism_threads=<span class="number">1</span>)</span><br><span class="line">    model_name = os.path.basename(args.ori_pb).split(<span class="string">"."</span>)[<span class="number">0</span>]</span><br><span class="line">    image_name = os.path.basename(args.image).split(<span class="string">"."</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    g = tf.Graph()</span><br><span class="line">    <span class="keyword">with</span> g.as_default():</span><br><span class="line">        <span class="keyword">with</span> tf.gfile.FastGFile(args.ori_pb,<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            graph_def = tf.GraphDef()</span><br><span class="line">            graph_def.ParseFromString(f.read())</span><br><span class="line">            tf.import_graph_def(graph_def, name=<span class="string">''</span>)</span><br><span class="line">        img = cv.imread(args.image)</span><br><span class="line">        X = cv.resize(img, (<span class="number">256</span>, <span class="number">256</span>))</span><br><span class="line">        <span class="keyword">with</span> tf.Session(config=config) <span class="keyword">as</span> sess:</span><br><span class="line">            sess.graph.as_default()</span><br><span class="line">            sess.run(tf.global_variables_initializer())</span><br><span class="line"></span><br><span class="line">            input_tensor = sess.graph.get_tensor_by_name(<span class="string">'X_content:0'</span>)</span><br><span class="line">            output_tensor = sess.graph.get_tensor_by_name(<span class="string">'add_37:0'</span>)</span><br><span class="line"></span><br><span class="line">            start_time = time.time()</span><br><span class="line">            ret =sess.run(output_tensor, feed_dict=&#123;input_tensor:[X]&#125;)</span><br><span class="line">            end_time = time.time()</span><br><span class="line">            print(<span class="string">"C++ inference(CPU) origin pb time is: "</span>,end_time-start_time)</span><br><span class="line">            img1 = tf.reshape(ret,[<span class="number">256</span>,<span class="number">256</span>,<span class="number">3</span>])</span><br><span class="line">            img_numpy = img1.eval(session=sess)</span><br><span class="line">            cv.imwrite(image_name + <span class="string">'_'</span> + model_name + <span class="string">'_cpu.jpg'</span>,img_numpy)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_ori_power_diff_pb</span><span class="params">()</span>:</span></span><br><span class="line">    args = parse_arg()</span><br><span class="line">    config = tf.ConfigProto(allow_soft_placement=<span class="literal">True</span>,</span><br><span class="line">                inter_op_parallelism_threads=<span class="number">1</span>,</span><br><span class="line">                            intra_op_parallelism_threads=<span class="number">1</span>)</span><br><span class="line">    model_name = os.path.basename(args.ori_power_diff_pb).split(<span class="string">"."</span>)[<span class="number">0</span>]</span><br><span class="line">    image_name = os.path.basename(args.image).split(<span class="string">"."</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    g = tf.Graph()</span><br><span class="line">    <span class="keyword">with</span> g.as_default():</span><br><span class="line">        <span class="keyword">with</span> tf.gfile.FastGFile(args.ori_power_diff_pb,<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            graph_def = tf.GraphDef()</span><br><span class="line">            graph_def.ParseFromString(f.read())</span><br><span class="line">            tf.import_graph_def(graph_def, name=<span class="string">''</span>)</span><br><span class="line">        img = cv.imread(args.image)</span><br><span class="line">        X = cv.resize(img, (<span class="number">256</span>, <span class="number">256</span>))</span><br><span class="line">        <span class="keyword">with</span> tf.Session(config=config) <span class="keyword">as</span> sess:</span><br><span class="line">            sess.graph.as_default()</span><br><span class="line">            sess.run(tf.global_variables_initializer())</span><br><span class="line"></span><br><span class="line">            input_tensor1 = sess.graph.get_tensor_by_name(<span class="string">'X_content:0'</span>)</span><br><span class="line">            input_tensor2 = sess.graph.get_tensor_by_name(<span class="string">'moments_15/PowerDifference_z:0'</span>)</span><br><span class="line">            output_tensor = sess.graph.get_tensor_by_name(<span class="string">'add_37:0'</span>)</span><br><span class="line"></span><br><span class="line">            start_time = time.time()</span><br><span class="line">            ret =sess.run(output_tensor, feed_dict=&#123;input_tensor1:[X], input_tensor2:<span class="number">2</span>&#125;)</span><br><span class="line">            end_time = time.time()</span><br><span class="line">            print(<span class="string">"C++ inference(CPU) time is: "</span>,end_time-start_time)</span><br><span class="line">            img1 = tf.reshape(ret,[<span class="number">256</span>,<span class="number">256</span>,<span class="number">3</span>])</span><br><span class="line">            img_numpy = img1.eval(session=sess)</span><br><span class="line">            cv.imwrite(image_name + <span class="string">'_'</span> + model_name + <span class="string">'_cpu.jpg'</span>,img_numpy)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_numpy_pb</span><span class="params">()</span>:</span></span><br><span class="line">    args = parse_arg()</span><br><span class="line">    config = tf.ConfigProto(allow_soft_placement=<span class="literal">True</span>,</span><br><span class="line">                inter_op_parallelism_threads=<span class="number">1</span>,</span><br><span class="line">                            intra_op_parallelism_threads=<span class="number">1</span>)</span><br><span class="line">    model_name = os.path.basename(args.numpy_pb).split(<span class="string">"."</span>)[<span class="number">0</span>]</span><br><span class="line">    image_name = os.path.basename(args.image).split(<span class="string">"."</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    g = tf.Graph()</span><br><span class="line">    <span class="keyword">with</span> g.as_default():</span><br><span class="line">        <span class="keyword">with</span> tf.gfile.FastGFile(args.numpy_pb,<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            graph_def = tf.GraphDef()</span><br><span class="line">            graph_def.ParseFromString(f.read())</span><br><span class="line">            tf.import_graph_def(graph_def, name=<span class="string">''</span>)</span><br><span class="line">        img = cv.imread(args.image)</span><br><span class="line">        X = cv.resize(img, (<span class="number">256</span>, <span class="number">256</span>))</span><br><span class="line">        <span class="keyword">with</span> tf.Session(config=config) <span class="keyword">as</span> sess:</span><br><span class="line">            sess.graph.as_default()</span><br><span class="line">            sess.run(tf.global_variables_initializer())</span><br><span class="line"></span><br><span class="line">            input_tensor1 = sess.graph.get_tensor_by_name(<span class="string">'X_content:0'</span>)</span><br><span class="line">            input_tensor2 = sess.graph.get_tensor_by_name(<span class="string">'moments_15/PowerDifference:0'</span>)</span><br><span class="line">            output_tensor = sess.graph.get_tensor_by_name(<span class="string">'add_37:0'</span>)</span><br><span class="line"></span><br><span class="line">            start_time = time.time()</span><br><span class="line">            input_2 = power_diff_numpy(sess.graph.get_tensor_by_name(<span class="string">'Conv2D_13:0'</span>).eval(feed_dict=&#123;input_tensor1:[X]&#125;),sess.graph.get_tensor_by_name(<span class="string">'moments_15/StopGradient:0'</span>).eval(feed_dict=&#123;input_tensor1:[X]&#125;),<span class="number">2</span>)</span><br><span class="line">            ret =sess.run(output_tensor, feed_dict=&#123;input_tensor1:[X], input_tensor2:input_2&#125;)</span><br><span class="line">            end_time = time.time()</span><br><span class="line">            print(<span class="string">"Numpy inference(CPU) time is: "</span>,end_time-start_time)</span><br><span class="line">            img1 = tf.reshape(ret,[<span class="number">256</span>,<span class="number">256</span>,<span class="number">3</span>])</span><br><span class="line">            img_numpy = img1.eval(session=sess)</span><br><span class="line">            cv.imwrite(image_name + <span class="string">'_'</span> + model_name + <span class="string">'_cpu.jpg'</span>,img_numpy)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    run_ori_pb()</span><br><span class="line">    run_ori_power_diff_pb()</span><br><span class="line">    run_numpy_pb()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="online-mlu"><a href="#online-mlu" class="headerlink" title="online_mlu"></a>online_mlu</h4><p>在mlu部分，使用到的模型是量化后的模型文件。</p>
+<p>仅仅需要在每个函数前加上</p>
+<p><code>config.mlu_options.save_offline_model = True</code></p>
+<p>这句话用于保存量化后可用于mlu的离线模型，其余部分均与cpu相同</p>
+<h3 id="离线推理"><a href="#离线推理" class="headerlink" title="离线推理"></a>离线推理</h3><p><del>令人惊讶的是，当我写完了在线推理之后，提交了一手发现居然拿了满分，于是我还没有写离线推理</del></p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"inference.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cnrt.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> StyleTransfer&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">short</span> half;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cnrtConvertFloatToHalfArray</span><span class="params">(<span class="keyword">uint16_t</span>* x, <span class="keyword">const</span> <span class="keyword">float</span>* y, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">    cnrtConvertFloatToHalf(x+i,y[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cnrtConvertHalfToFloatArray</span><span class="params">(<span class="keyword">float</span>* x, <span class="keyword">const</span> <span class="keyword">uint16_t</span>* y, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">    cnrtConvertHalfToFloat(x+i,y[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cnrtConvertFloatToHalfArray</span><span class="params">(<span class="keyword">uint16_t</span>* x, <span class="keyword">float</span>* y, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">    cnrtConvertFloatToHalf(x+i,y[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cnrtConvertHalfToFloatArray</span><span class="params">(<span class="keyword">float</span>* x, <span class="keyword">uint16_t</span>* y, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">    cnrtConvertHalfToFloat(x+i,y[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Inference :: Inference(<span class="built_in">std</span>::<span class="built_in">string</span> offline_model)&#123;</span><br><span class="line">    offline_model_ = offline_model;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Inference :: run(DataTransfer* DataT)&#123;</span><br><span class="line">    cnrtInit(<span class="number">0</span>);</span><br><span class="line">    cnrtModel_t model;</span><br><span class="line">    cnrtLoadModel(&amp;model, offline_model_.c_str());</span><br><span class="line"></span><br><span class="line">    cnrtDev_t dev;</span><br><span class="line">    cnrtGetDeviceHandle(&amp;dev, <span class="number">0</span>);</span><br><span class="line">    cnrtSetCurrentDevice(dev);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">float</span>* input_data = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">float</span>*&gt;(<span class="built_in">malloc</span>(<span class="number">256</span>*<span class="number">256</span>*<span class="number">3</span>*<span class="keyword">sizeof</span>(<span class="keyword">float</span>)));</span><br><span class="line">    <span class="keyword">float</span>* output_data = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">float</span>*&gt;(<span class="built_in">malloc</span>(<span class="number">256</span>*<span class="number">256</span>*<span class="number">3</span>*<span class="keyword">sizeof</span>(<span class="keyword">float</span>)));</span><br><span class="line">    <span class="keyword">int</span> t = <span class="number">256</span>*<span class="number">256</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;j++)</span><br><span class="line">            input_data[i*<span class="number">3</span>+j] = DataT-&gt;input_data[t*j+i]; </span><br><span class="line">    <span class="keyword">int</span> number = <span class="number">0</span>;</span><br><span class="line">    cnrtGetFunctionNumber(model, &amp;number);</span><br><span class="line"></span><br><span class="line">    cnrtFunction_t function;</span><br><span class="line">    cnrtCreateFunction(&amp;function);</span><br><span class="line">    cnrtExtractFunction(&amp;function, model, <span class="string">"subnet0"</span>);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> inputNum, outputNum;</span><br><span class="line">    <span class="keyword">int64_t</span> *inputSizeS, *outputSizeS;</span><br><span class="line">    cnrtGetInputDataSize(&amp;inputSizeS, &amp;inputNum, function);</span><br><span class="line">    cnrtGetOutputDataSize(&amp;outputSizeS, &amp;outputNum, function);</span><br><span class="line"></span><br><span class="line">    DataT-&gt;output_data = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">float</span>*&gt;(<span class="built_in">malloc</span>(<span class="number">256</span> * <span class="number">256</span> * <span class="number">3</span> * <span class="keyword">sizeof</span>(<span class="keyword">float</span>)));</span><br><span class="line">    half* input_half = (half*)<span class="built_in">malloc</span>(<span class="number">256</span> * <span class="number">256</span> * <span class="number">3</span> * <span class="keyword">sizeof</span>(half));</span><br><span class="line">    half* output_half = (half*)<span class="built_in">malloc</span>(<span class="number">256</span> * <span class="number">256</span> * <span class="number">3</span> * <span class="keyword">sizeof</span>(half));</span><br><span class="line">  </span><br><span class="line">    cnrtConvertFloatToHalfArray(input_half, input_data, <span class="number">256</span> * <span class="number">256</span> * <span class="number">3</span>);</span><br><span class="line">    cnrtConvertFloatToHalfArray(output_half, DataT-&gt;output_data, <span class="number">256</span> * <span class="number">256</span> * <span class="number">3</span>);</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> *mlu_input, *mlu_output;</span><br><span class="line">    cnrtMalloc(&amp;(mlu_input), inputSizeS[<span class="number">0</span>]);</span><br><span class="line">    cnrtMalloc(&amp;(mlu_output), outputSizeS[<span class="number">0</span>]);</span><br><span class="line">    cnrtMemcpy(mlu_input, input_half, <span class="number">256</span> * <span class="number">256</span> * <span class="number">3</span> * <span class="keyword">sizeof</span>(half), CNRT_MEM_TRANS_DIR_HOST2DEV);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    cnrtRuntimeContext_t ctx;</span><br><span class="line">    cnrtCreateRuntimeContext(&amp;ctx, function, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    cnrtSetRuntimeContextDeviceId(ctx, <span class="number">0</span>);</span><br><span class="line">    cnrtInitRuntimeContext(ctx, <span class="literal">NULL</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> *param[<span class="number">2</span>];</span><br><span class="line">    param[<span class="number">0</span>] = mlu_input;</span><br><span class="line">    param[<span class="number">1</span>] = mlu_output;</span><br><span class="line">    cnrtQueue_t <span class="built_in">queue</span>;</span><br><span class="line">    cnrtRuntimeContextCreateQueue(ctx, &amp;<span class="built_in">queue</span>);</span><br><span class="line">    cnrtInvokeRuntimeContext(ctx, (<span class="keyword">void</span>**)param, <span class="built_in">queue</span>, <span class="literal">nullptr</span>);</span><br><span class="line">    cnrtSyncQueue(<span class="built_in">queue</span>);</span><br><span class="line">    </span><br><span class="line">    cnrtMemcpy(output_half, mlu_output, <span class="number">256</span> * <span class="number">256</span> * <span class="number">3</span> * <span class="keyword">sizeof</span>(half), CNRT_MEM_TRANS_DIR_DEV2HOST);</span><br><span class="line">    </span><br><span class="line">    cnrtConvertHalfToFloatArray(output_data, output_half, <span class="number">256</span> * <span class="number">256</span> * <span class="number">3</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;j++)</span><br><span class="line">            DataT-&gt;output_data[t*j+i] = output_data[i*<span class="number">3</span>+j];</span><br><span class="line">    cnrtFree(mlu_input);</span><br><span class="line">    cnrtFree(mlu_output);</span><br><span class="line">    cnrtDestroyQueue(<span class="built_in">queue</span>);</span><br><span class="line">    </span><br><span class="line">    cnrtDestroy();</span><br><span class="line">    <span class="built_in">free</span>(input_half);</span><br><span class="line">    <span class="built_in">free</span>(output_half);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>在这门课程中，<del>我根据报错找 bug 的能力确实有了很大的提高</del>，虽然体验不是很好，但是自己完成了之后还是挺有成就感的，如果您对于此篇文章有好的提议，或者对于这个实验还有其他的问题，可以向 $wz1234@buaa.edu.cn$ 发送邮件，也欢迎以其他方式和我交流</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/07/数字电路/" rel="next" title="数字电路复习笔记">
+                <i class="fa fa-chevron-left"></i> 数字电路复习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/16/图像处理-homework2/" rel="prev" title="图像处理_homework2">
+                图像处理_homework2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="王振">
+            
+              <p class="site-author-name" itemprop="name">王振</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+  -        
+<div id="days">
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("09/20/2019 22:28:51");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+</div>
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#智能计算机实验"><span class="nav-number">1.</span> <span class="nav-text">智能计算机实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#我对于此课程实验的看法"><span class="nav-number">1.1.</span> <span class="nav-text">我对于此课程实验的看法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验一"><span class="nav-number">1.2.</span> <span class="nav-text">实验一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验一选作（四选一）—-softmax-算子实现"><span class="nav-number">1.3.</span> <span class="nav-text">实验一选作（四选一）— softmax 算子实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#softmax-算子介绍"><span class="nav-number">1.3.1.</span> <span class="nav-text">softmax 算子介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算子实现"><span class="nav-number">1.3.2.</span> <span class="nav-text">算子实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体代码"><span class="nav-number">1.3.3.</span> <span class="nav-text">具体代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验总结"><span class="nav-number">1.3.4.</span> <span class="nav-text">实验总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验二"><span class="nav-number">1.4.</span> <span class="nav-text">实验二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型量化"><span class="nav-number">1.4.1.</span> <span class="nav-text">模型量化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线推理"><span class="nav-number">1.4.2.</span> <span class="nav-text">在线推理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#online-cpu"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">online_cpu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#online-mlu"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">online_mlu</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离线推理"><span class="nav-number">1.4.3.</span> <span class="nav-text">离线推理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">1.5.</span> <span class="nav-text">结束语</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王振</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
